@@ -13,5 +13,9 @@ RUN go get -t -v ./... && \
     go build -o aws-s3-proxy ./cmd/
 
 FROM alpine
+
+RUN apk update && apk upgrade && \
+    apk add --no-cache ca-certificates
+
 COPY --from=builder /tmp/aws-s3-proxy/aws-s3-proxy /bin/
 ENTRYPOINT ["aws-s3-proxy"]
