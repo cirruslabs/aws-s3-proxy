@@ -24,8 +24,7 @@ func main() {
 	}
 
 	sess := session.Must(session.NewSession(&aws.Config{
-		Region:          aws.String(region),
-		S3UseAccelerate: aws.Bool(true),
+		Region: aws.String(region),
 	}))
 
 	storageProxy := proxy.NewStorageProxy(sess, bucketName, defaultPrefix)
