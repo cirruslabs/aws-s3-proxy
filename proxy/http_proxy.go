@@ -75,7 +75,6 @@ func (proxy StorageProxy) downloadBlob(w http.ResponseWriter, name string) {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
-	w.WriteHeader(http.StatusOK)
 }
 
 func (proxy StorageProxy) checkBlobExists(w http.ResponseWriter, name string) {
