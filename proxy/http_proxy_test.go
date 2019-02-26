@@ -2,6 +2,7 @@ package proxy
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/johannesboyne/gofakes3"
 	"github.com/johannesboyne/gofakes3/backend/s3mem"
@@ -37,6 +38,7 @@ func createFakeS3(t *testing.T) (*http.Server, *session.Session) {
 		Endpoint:         &addr,
 		DisableSSL:       aws.Bool(true),
 		S3ForcePathStyle: aws.Bool(true),
+		Credentials:      credentials.NewStaticCredentials("test", "test", "test"),
 	})
 
 	if err != nil {
