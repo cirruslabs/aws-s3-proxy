@@ -71,6 +71,7 @@ func (proxy StorageProxy) downloadBlob(w http.ResponseWriter, name string) {
 	})
 	_, err := downloader.Download(NewSequentialWriter(w), &getObjectInput)
 	if err != nil {
+		log.Printf("Failed to download cache entry %s: %v\n", name, err)
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
@@ -84,6 +85,7 @@ func (proxy StorageProxy) checkBlobExists(w http.ResponseWriter, name string) {
 	}
 	objectOutput, err := proxy.s3Client.HeadObject(&headObjectInput)
 	if objectOutput == nil || err != nil {
+		log.Printf("Failed to check cache entry %s: %v\n", name, err)
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
@@ -100,6 +102,7 @@ func (proxy StorageProxy) uploadBlob(w http.ResponseWriter, r *http.Request, nam
 	})
 
 	if err != nil {
+		log.Printf("Failed to upload cache entry %s: %v\n", name, err)
 		w.WriteHeader(http.StatusBadRequest)
 		errorMsg := fmt.Sprintf("Failed write cache body! %s", err)
 		_, _ = w.Write([]byte(errorMsg))
