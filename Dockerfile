@@ -3,8 +3,8 @@ FROM golang:latest as builder
 WORKDIR /build
 ADD . /build
 
-RUN go get -t -v ./... && \
-    go test -t -v ./... && \
+RUN go get ./... && \
+    go test ./... && \
     go build -o aws-s3-proxy ./cmd/
 
 FROM alpine:latest
