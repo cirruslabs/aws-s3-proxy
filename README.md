@@ -7,10 +7,10 @@ blobs to a specified Azure container by blob's name.
 
 For example, `GET` for `<proxy_url>/some/file` will return `some/file` blob if it exists.
 
-Prebuilt Docker image is available on GitHub's Container Registry:
+Prebuilt Docker image is available on Docker Hub:
 
 ```bash
-docker pull ghcr.io/cirruslabs/aws-s3-proxy:latest
+docker pull cirrusci/aws-s3-proxy:latest
 ```
 
 # Usage 
