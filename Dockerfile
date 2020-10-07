@@ -5,7 +5,7 @@ ADD . /build
 
 RUN go get ./... && \
     go test ./... && \
-    go build -o aws-s3-proxy ./cmd/
+    CGO_ENABLED=0 go build -o aws-s3-proxy ./cmd/
 
 FROM alpine:latest
 LABEL org.opencontainers.image.source=https://github.com/cirruslabs/aws-s3-proxy/
