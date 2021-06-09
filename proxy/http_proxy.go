@@ -72,7 +72,6 @@ func (proxy StorageProxy) downloadBlob(w http.ResponseWriter, name string) {
 	_, err := downloader.Download(NewSequentialWriter(w), &getObjectInput)
 	if err != nil {
 		log.Printf("Failed to download cache entry %s/%s: %v\n", proxy.bucketName, proxy.objectName(name), err)
-		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 }
